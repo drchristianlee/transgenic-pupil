@@ -42,28 +42,29 @@ tracesem = avgsem(:, 3);
 shadedErrorBar(frame, tracemean, tracesem, 'b', 0);
 set(gca,'TickDir','out')
 set(gca, 'box', 'off')
-axis([0 900 92 114])
+axis([0 390 80 120])
+saveas(gcf,'pupil_norm.jpg')
 
 %axis([400 850 80 130]) %this can be modified to make plot more attractive
 
 %now plot just rows 400 to 850, this is useful because grouping in
 %illustrator is difficult the other way
 
-tracemeanshort = tracemean(400:end, 1);
-tracesemshort = tracesem(400:end, 1);
-frameshort = colon(1, length(tracemeanshort)).';
-figure
-shadedErrorBar(frameshort, tracemeanshort, tracesemshort, 'b', 0);
-axis([0 450 80 130]) %this can be modified to make plot more attractive
-set(gca,'TickDir','out')
-set(gca, 'box', 'off')
-figure
-plotcols = sizediamkeepernorm(1, 2);
-plot(diamKeepernormAvg(:,1:plotcols), 'yellow');
-hold on
-plot(diamKeepernormAvg(:,end))
-axis tight;
-hold off
+% tracemeanshort = tracemean(400:end, 1);
+% tracesemshort = tracesem(400:end, 1);
+% frameshort = colon(1, length(tracemeanshort)).';
+% figure
+% shadedErrorBar(frameshort, tracemeanshort, tracesemshort, 'b', 0);
+% axis([0 450 80 130]) %this can be modified to make plot more attractive
+% set(gca,'TickDir','out')
+% set(gca, 'box', 'off')
+% figure
+% plotcols = sizediamkeepernorm(1, 2);
+% plot(diamKeepernormAvg(:,1:plotcols), 'yellow');
+% hold on
+% plot(diamKeepernormAvg(:,end))
+% axis tight;
+% hold off
 
 
 %now plot raw values
