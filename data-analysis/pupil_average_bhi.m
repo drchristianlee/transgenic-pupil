@@ -15,9 +15,9 @@ for row = 1:sizediamkeeper(1, 1);
 end
 figure
 plotcols = sizediamkeeper(1, 2);
-plot(diamKeeperAvg(:,1:plotcols), 'yellow');
+plot(diamKeeperAvg(:,1:plotcols), 'Color', [1 0.5 0]);
 hold on
-plot(diamKeeperAvg(:,end))
+plot(diamKeeperAvg(:,end), 'blue')
 axis tight;
 hold off
 
