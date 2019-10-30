@@ -67,4 +67,5 @@ set(gca,'TickDir','out')
 set(gca, 'box', 'off')
 
 save('exclude.mat' , 'exclude')
+save('nantrials.mat' , 'nantrials')
 
