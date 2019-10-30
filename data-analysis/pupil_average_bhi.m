@@ -7,6 +7,12 @@ clear;
 cd(pathname);
 load(filename);
 
+exclude = str2num(cell2mat(inputdlg('Please enter the trials to exclude, each separated by a space')));
+
+for screen = 1:(size(exclude, 2));
+    diamKeeper(:, exclude(1, screen)) = NaN;
+end
+
 sizediamkeeper = size(diamKeeper);
 avgcol = sizediamkeeper(1, 2) + 1;
 diamKeeperAvg = diamKeeper;
