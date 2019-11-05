@@ -7,7 +7,11 @@ clear;
 cd(pathname);
 load(filename);
 
-exclude = str2num(cell2mat(inputdlg('Please enter the trials to exclude, each separated by a space')));
+if exist('exclude.mat') == 2;
+    load('exclude.mat')
+else
+    exclude = str2num(cell2mat(inputdlg('Please enter the trials to exclude, each separated by a space')));
+end
 
 for screen = 1:(size(exclude, 2));
     diamKeeper(:, exclude(1, screen)) = NaN;
@@ -68,4 +72,5 @@ set(gca, 'box', 'off')
 
 save('exclude.mat' , 'exclude')
 save('nantrials.mat' , 'nantrials')
-
+save('avgsem.mat' , 'avgsem')
+save('total_trials.mat' , 'sizediamkeeper')
