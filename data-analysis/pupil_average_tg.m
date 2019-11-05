@@ -2,6 +2,8 @@
 %containing the diamKeeper variable. This can be used to plot unexpected
 %reward trials. 
 
+% this is a test comment
+
 clear; 
 [filename, pathname] = uigetfile('*.mat');
 cd(pathname);
