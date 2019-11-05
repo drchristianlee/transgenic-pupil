@@ -40,4 +40,4 @@ tracesem = grand_avg_sem(:, 3);
 shadedErrorBar(frame, tracemean, tracesem, 'b', 0);
 set(gca,'TickDir','out')
 set(gca, 'box', 'off')
-axis([0 390 80 120])
+axis([0 390 40 120])
