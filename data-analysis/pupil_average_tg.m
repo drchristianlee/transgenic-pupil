@@ -11,6 +11,7 @@ if exist('exclude.mat') == 2;
     load('exclude.mat')
 else
     exclude = str2num(cell2mat(inputdlg('Please enter the trials to exclude, each separated by a space')));
+    save('exclude.mat' , 'exclude')
 end
 
 for screen = 1:(size(exclude, 2));
@@ -70,7 +71,6 @@ shadedErrorBar(rawframe, rawtracemean, rawtracesem, 'b', 0);
 set(gca,'TickDir','out')
 set(gca, 'box', 'off')
 
-save('exclude.mat' , 'exclude')
 save('nantrials.mat' , 'nantrials')
 save('avgsem.mat' , 'avgsem')
 save('total_trials.mat' , 'sizediamkeeper')
