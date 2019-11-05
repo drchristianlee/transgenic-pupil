@@ -32,11 +32,11 @@ grand_avg_sem(:,1) = colon(1, length(result)).';
 grand_avg_sem(:, 2) = nanmean(result, 2);
 nanfinder = isnan(result);
 nantrials = size(result, 2) - sum(nanfinder, 2);
-avgsem(:, 3) = nanstd(result, 0, 2) ./ sqrt(nantrials);
+grand_avg_sem(:, 3) = nanstd(result, 0, 2) ./ sqrt(nantrials);
 figure
-frame = avgsem(:, 1);
-tracemean = avgsem(:, 2);
-tracesem = avgsem(:, 3);
+frame = grand_avg_sem(:, 1);
+tracemean = grand_avg_sem(:, 2);
+tracesem = grand_avg_sem(:, 3);
 shadedErrorBar(frame, tracemean, tracesem, 'b', 0);
 set(gca,'TickDir','out')
 set(gca, 'box', 'off')
