@@ -19,3 +19,25 @@ for f = 1:count;
     holdercells(1, f) = {currkeeper.(name)};
 end
 
+for subs = 1:size(holdercells, 2);
+    for frames = 1:size(holdercells{1, subs}, 1);
+        result(frames, subs) = holdercells{1, subs}(frames, 2);
+    end
+end
+
+result(result == 0) = NaN;
+
+
+grand_avg_sem(:,1) = colon(1, length(result)).';
+grand_avg_sem(:, 2) = nanmean(result, 2);
+nanfinder = isnan(result);
+nantrials = size(result, 2) - sum(nanfinder, 2);
+avgsem(:, 3) = nanstd(result, 0, 2) ./ sqrt(nantrials);
+figure
+frame = avgsem(:, 1);
+tracemean = avgsem(:, 2);
+tracesem = avgsem(:, 3);
+shadedErrorBar(frame, tracemean, tracesem, 'b', 0);
+set(gca,'TickDir','out')
+set(gca, 'box', 'off')
+axis([0 390 80 120])
