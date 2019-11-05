@@ -57,7 +57,6 @@ axis([0 390 80 120])
 saveas(gcf,'pupil_norm.jpg')
 
 
-
 avgsemraw(:, 1) = colon(1, length(diamKeeper)).';
 avgsemraw(:, 2) = diamKeeperAvg(:, avgcol);
 rawnanfinder = isnan(diamKeeper);
