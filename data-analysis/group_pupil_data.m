@@ -5,7 +5,7 @@
 % and transgenic_null. Copy and paste avgsem.mat data for the corresponding
 % mice into each folder. After pasting rename files so they are not
 % overwritten using a naming scheme. 
-
+clear
 folder = uigetdir;
 cd(folder);
 filePattern = fullfile(folder, '*.mat');
