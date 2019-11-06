@@ -43,5 +43,7 @@ set(gca, 'box', 'off')
 axis([0 390 40 120])
 
 for min_finder = 1:size(result, 2);
-mins(min_finder, 1) = min(result(1:390, min_finder));
+[mins(min_finder, 1), mins(min_finder, 2)] = min(result(1:390, min_finder));
 end
+
+save('mins.mat', 'mins')
