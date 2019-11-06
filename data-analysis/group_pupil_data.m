@@ -7,6 +7,7 @@
 % overwritten using a naming scheme. 
 clear
 folder = uigetdir;
+save_min = str2num(cell2mat(inputdlg('Would you like to save the minimum value file? Press 1 for yes 2 for no')));
 cd(folder);
 filePattern = fullfile(folder, '*.mat');
 matfiles = dir(filePattern);
@@ -46,4 +47,24 @@ for min_finder = 1:size(result, 2);
 [mins(min_finder, 1), mins(min_finder, 2)] = min(result(1:390, min_finder));
 end
 
-save('mins.mat', 'mins')
+if save_min == 1;
+    save('mins.mat', 'mins')
+else
+end
+
+% derivative calculations
+
+for derv_calc = 1:size(result, 2);
+    derv_hold(:, derv_calc) = diff(result(:, derv_calc));
+end
+
+derv_avg_sem(:, 1) = colon(1, 390);
+derv_avg_sem(:, 2) = nanmean(derv_hold(1:390, 1), 2);
+derv_avg_sem(:, 3) = std(derv_hold(1:390, :), 0, 2) ./ sqrt(size(derv_hold, 2));
+
+figure
+
+derv_frame = derv_avg_sem(:, 1);
+derv_tracemean = derv_avg_sem(:, 2);
+derv_tracesem = derv_avg_sem(:, 3);
+shadedErrorBar(derv_frame, derv_tracemean, derv_tracesem, 'b', 0);
