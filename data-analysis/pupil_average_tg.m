@@ -14,6 +14,8 @@ else
     save('exclude.mat' , 'exclude')
 end
 
+save_option = str2num(cell2mat(inputdlg('Would you like to save the data? Enter 1 for yes, 2 for no.')));
+
 for screen = 1:(size(exclude, 2));
     diamKeeper(:, exclude(1, screen)) = NaN;
 end
@@ -70,6 +72,9 @@ shadedErrorBar(rawframe, rawtracemean, rawtracesem, 'b', 0);
 set(gca,'TickDir','out')
 set(gca, 'box', 'off')
 
-save('nantrials.mat' , 'nantrials')
-save('avgsem.mat' , 'avgsem')
-save('total_trials.mat' , 'sizediamkeeper')
+if save_option == 1;
+    save('nantrials.mat' , 'nantrials')
+    save('avgsem.mat' , 'avgsem')
+    save('total_trials.mat' , 'sizediamkeeper')
+else
+end
