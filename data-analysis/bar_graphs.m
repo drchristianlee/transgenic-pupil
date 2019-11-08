@@ -1,18 +1,31 @@
-% Make a variable named test_keeper and then copy/paste the amplitude data
-% for a single comparison (from master spreadsheet) as column vectors. Save this variable
-% as *.mat as appropriate. Then run this script, choosing the
-% correct file name in the line indicated below. Also set test to paired or
-% unpaired and set scale to 1 true or 0 false. 
+% Create a new folder with the min.mat files inside. 
 
 clear;
 close all
 clc
 
-[path] = uigetdir;
-cd(path);
+clear
+folder = uigetdir;
+test = str2num(cell2mat(inputdlg('Would you like to do a paired or unpaired test? Press 1 for paired 2 for unpaired')));
+cd(folder);
+filePattern = fullfile(folder, '*.mat');
+matfiles = dir(filePattern);
+count = length(matfiles);
+keepercol = 1;
+for f = 1:count;
+    B = matfiles(f, 1).name;
+    currkeeper = load(B);
+    name = char(fieldnames(currkeeper));
+    holdercells(1, f) = {currkeeper.(name)};
+end
 
-load('test_keeper.mat')
-test = 2; %enter 1 for paired test and 2 for unpaired test
+for subs = 1:size(holdercells, 2);
+    for frames = 1:size(holdercells{1, subs}, 1);
+        result(frames, subs) = holdercells{1, subs}(frames, 2);
+    end
+end
+
+
 scale = 0; %enter 1 to scale data by 1000 else 0
 
 test_keeper(test_keeper == 0) = NaN;
