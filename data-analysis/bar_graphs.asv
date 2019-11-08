@@ -1,0 +1,54 @@
+% Create a new folder with the min
+
+clear;
+close all
+clc
+
+[path] = uigetdir;
+cd(path);
+
+load('test_keeper.mat')
+test = 2; %enter 1 for paired test and 2 for unpaired test
+scale = 0; %enter 1 to scale data by 1000 else 0
+
+test_keeper(test_keeper == 0) = NaN;
+
+if scale == 1;
+    test_keeper = test_keeper * 1000;
+else
+end
+
+barkeeper(1,1) = nanmean(test_keeper(:,1));
+barkeeper(1,2) = nanmean(test_keeper(:, 2));
+nanfinder = isnan(test_keeper);
+nanvals = sum(nanfinder, 1);
+denominator1 = sqrt((size(test_keeper(:, 1), 1)) - nanvals(1, 1));
+denominator2 = sqrt((size(test_keeper(:, 2), 1)) - nanvals(1, 2));
+barkeeper(2,1) = nanstd(test_keeper(:,1))/denominator1;
+barkeeper(2,2) = nanstd(test_keeper(:,2))/denominator2;
+
+figure
+bar(barkeeper(1,:), 'b');
+hold on;
+errorbar(barkeeper(1,:), barkeeper(2,:), '.', 'color', 'k', 'marker', 'none');
+hold on;
+
+for points = 1:size(test_keeper, 1);
+    plot(test_keeper(points, 1:2) , 'o', 'color' , 'green', 'MarkerFaceColor', 'green')
+    hold on
+end
+
+ axis([0 3 0 40])
+ set(gca,'TickDir','out')
+ set(gca, 'box', 'off')
+ set(gcf,'position',[680 558 160 210])
+ set(gca, 'TickLength', [0.025 0.025]);
+ set(gca,'FontSize',9);
+ 
+ if test == 1;
+ [h p ci stats] = ttest(test_keeper(:, 1), test_keeper(:, 2))
+ disp('a paired test was used');
+ else
+     [h p ci stats] = ttest2(test_keeper(:, 1), test_keeper(:, 2))
+     disp('an unpaired test was used');
+ end
