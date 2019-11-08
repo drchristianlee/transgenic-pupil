@@ -43,8 +43,13 @@ set(gca,'TickDir','out')
 set(gca, 'box', 'off')
 axis([0 390 40 120])
 
+%compare at min point of average data
+[trace_compare_point(1, 1), trace_compare_point(1, 2)] = min(grand_avg_sem(1:390, 2));
+
+
 for min_finder = 1:size(result, 2);
 [mins(min_finder, 1), mins(min_finder, 2)] = min(result(1:390, min_finder));
+grand_avg_min(min_finder, 1) = result(trace_compare_point(1, 2), min_finder);
 end
 
 if save_min == 1;
@@ -62,6 +67,9 @@ derv_avg_sem(:, 1) = colon(1, 390);
 derv_avg_sem(:, 2) = nanmean(derv_hold(1:390, 1), 2);
 derv_avg_sem(:, 3) = std(derv_hold(1:390, :), 0, 2) ./ sqrt(size(derv_hold, 2));
 
+%compare at min point of average data
+[derv_compare_point(1, 1), derv_compare_point(1, 2)] = min(derv_avg_sem(1:390, 2));
+
 figure
 
 derv_frame = derv_avg_sem(:, 1);
@@ -71,9 +79,15 @@ shadedErrorBar(derv_frame, derv_tracemean, derv_tracesem, 'b', 0);
 
 for derv_min_finder = 1:size(derv_hold, 2);
 [derv_mins(derv_min_finder, 1), derv_mins(derv_min_finder, 2)] = min(derv_hold(1:390, derv_min_finder));
+derv_avg_min(derv_min_finder, 1) = derv_hold(derv_compare_point(1, 2), min_finder);
 end
 
 if save_min == 1;
     save('derv_mins.mat', 'derv_mins')
+    save('grand_avg_min.mat', 'grand_avg_min')
+    save('derv_avg_min.mat', 'derv_avg_min')
 else
 end
+
+
+
