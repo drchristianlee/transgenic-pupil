@@ -88,4 +88,3 @@ if save_min == 1;
     save('derv_avg_min.mat', 'derv_avg_min')
 else
 end
-
