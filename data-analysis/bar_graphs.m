@@ -21,7 +21,7 @@ end
 
 for subs = 1:size(holdercells, 2);
     for frames = 1:size(holdercells{1, subs}, 1);
-        result(frames, subs) = holdercells{1, subs}(frames, 2);
+        test_keeper(frames, subs) = holdercells{1, subs}(frames, 1);
     end
 end
 
@@ -55,7 +55,7 @@ for points = 1:size(test_keeper, 1);
     hold on
 end
 
- axis([0 3 0 40])
+ %axis([0 3 0 40])
  set(gca,'TickDir','out')
  set(gca, 'box', 'off')
  set(gcf,'position',[680 558 160 210])
