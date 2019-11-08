@@ -69,11 +69,11 @@ derv_tracemean = derv_avg_sem(:, 2);
 derv_tracesem = derv_avg_sem(:, 3);
 shadedErrorBar(derv_frame, derv_tracemean, derv_tracesem, 'b', 0);
 
-for min_finder = 1:size(result, 2);
-[mins(min_finder, 1), mins(min_finder, 2)] = min(result(1:390, min_finder));
+for derv_min_finder = 1:size(derv_hold, 2);
+[derv_mins(derv_min_finder, 1), mins(derv_min_finder, 2)] = min(result(1:390, derv_min_finder));
 end
 
 if save_min == 1;
-    save('mins.mat', 'mins')
+    save('derv_mins.mat', 'derv_mins')
 else
 end
