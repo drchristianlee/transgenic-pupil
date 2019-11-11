@@ -79,7 +79,7 @@ shadedErrorBar(derv_frame, derv_tracemean, derv_tracesem, 'b', 0);
 
 for derv_min_finder = 1:size(derv_hold, 2);
 [derv_mins(derv_min_finder, 1), derv_mins(derv_min_finder, 2)] = min(derv_hold(1:390, derv_min_finder));
-derv_avg_min(derv_min_finder, 1) = derv_hold(derv_compare_point(1, 2), min_finder);
+derv_avg_min(derv_min_finder, 1) = derv_hold(derv_compare_point(1, 2), derv_min_finder);
 end
 
 if save_min == 1;
