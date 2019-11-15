@@ -35,13 +35,13 @@ nanfinder = isnan(result);
 nantrials = size(result, 2) - sum(nanfinder, 2);
 grand_avg_sem(:, 3) = nanstd(result, 0, 2) ./ sqrt(nantrials);
 figure
-frame = grand_avg_sem(:, 1);
-tracemean = grand_avg_sem(:, 2);
-tracesem = grand_avg_sem(:, 3);
+frame = grand_avg_sem(1:390, 1);
+tracemean = grand_avg_sem(1:390, 2);
+tracesem = grand_avg_sem(1:390, 3);
 shadedErrorBar(frame, tracemean, tracesem, 'b', 0);
 set(gca,'TickDir','out')
 set(gca, 'box', 'off')
-axis([0 390 40 120])
+axis([0 400 40 120])
 
 %compare at min point of average data
 [trace_compare_point(1, 1), trace_compare_point(1, 2)] = min(grand_avg_sem(1:390, 2));
@@ -76,6 +76,9 @@ derv_frame = derv_avg_sem(:, 1);
 derv_tracemean = derv_avg_sem(:, 2);
 derv_tracesem = derv_avg_sem(:, 3);
 shadedErrorBar(derv_frame, derv_tracemean, derv_tracesem, 'b', 0);
+set(gca,'TickDir','out')
+set(gca, 'box', 'off')
+axis([0 400 -2.5 1])
 
 for derv_min_finder = 1:size(derv_hold, 2);
 [derv_mins(derv_min_finder, 1), derv_mins(derv_min_finder, 2)] = min(derv_hold(1:390, derv_min_finder));
