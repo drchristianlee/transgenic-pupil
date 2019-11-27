@@ -45,6 +45,7 @@ axis([0 400 40 120])
 
 %compare at min point of average data
 [trace_compare_point(1, 1), trace_compare_point(1, 2)] = min(grand_avg_sem(1:390, 2));
+[late_compare_point(1,1), late_compare_point(1,2)] = 
 
 
 for min_finder = 1:size(result, 2);
