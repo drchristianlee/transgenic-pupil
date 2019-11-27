@@ -50,8 +50,12 @@ axis([0 400 40 120])
 
 
 for min_finder = 1:size(result, 2);
-[mins(min_finder, 1), mins(min_finder, 2)] = min(result(1:390, min_finder));
-grand_avg_min(min_finder, 1) = result(trace_compare_point(1, 2), min_finder);
+    [mins(min_finder, 1), mins(min_finder, 2)] = min(result(1:390, min_finder));
+    grand_avg_min(min_finder, 1) = result(trace_compare_point(1, 2), min_finder);
+    if late_compare_point > 0;
+        late_point(min_finder, 1) = result(late_compare_point, min_finder);
+    else
+    end
 end
 
 if save_min == 1;
