@@ -8,6 +8,7 @@
 clear
 folder = uigetdir;
 save_min = str2num(cell2mat(inputdlg('Would you like to save the minimum value file? Press 1 for yes 2 for no')));
+late_compare_point = str2num(cell2mat(inputdlg('Please enter a late point to compare, or enter 0 to skip')));
 cd(folder);
 filePattern = fullfile(folder, '*.mat');
 matfiles = dir(filePattern);
@@ -43,14 +44,16 @@ set(gca,'TickDir','out')
 set(gca, 'box', 'off')
 axis([0 400 40 120])
 
-%compare at min point of average data and at late compare point
+%compare at min point of average data
 [trace_compare_point(1, 1), trace_compare_point(1, 2)] = min(grand_avg_sem(1:390, 2));
-if late_compare_point >
+
 
 
 for min_finder = 1:size(result, 2);
 [mins(min_finder, 1), mins(min_finder, 2)] = min(result(1:390, min_finder));
 grand_avg_min(min_finder, 1) = result(trace_compare_point(1, 2), min_finder);
+if late_compare_point > 0;
+    late_point(min_finder, 1) = 
 end
 
 if save_min == 1;
