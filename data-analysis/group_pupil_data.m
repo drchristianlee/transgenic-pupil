@@ -70,7 +70,7 @@ for derv_calc = 1:size(result, 2);
 end
 
 derv_avg_sem(:, 1) = colon(1, 390);
-derv_avg_sem(:, 2) = nanmean(derv_hold(1:390, 1), 2);
+derv_avg_sem(:, 2) = nanmean(derv_hold(1:390, :), 2);
 derv_avg_sem(:, 3) = std(derv_hold(1:390, :), 0, 2) ./ sqrt(size(derv_hold, 2));
 
 %compare at min point of average data
