@@ -95,6 +95,9 @@ if save_min == 1;
     save('derv_mins.mat', 'derv_mins')
     save('grand_avg_min.mat', 'grand_avg_min')
     save('derv_avg_min.mat', 'derv_avg_min')
-    save('late_point.mat' , 'late_point')
+    if late_compare_point ~= 0;
+        save('late_point.mat' , 'late_point')
+    else
+    end
 else
 end
